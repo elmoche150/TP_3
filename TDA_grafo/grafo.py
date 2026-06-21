@@ -5,18 +5,18 @@ class Grafo:
         self.ady = {}
 
 
-    def agregar_vertices(self, v):
+    def agregar_vertice(self, v):
         if v not in self.ady:
             self.ady[v] = {}
     
-    def borrar_vertices(self, v, w):
+    def borrar_vertice(self, v, w):
         if not self.dirigido:
             del self.ady[w][v]
     
     def estan_unidos(self, v, w):
         return w in self.ady[v]
     
-    def peso_aristas(self, v, w):
+    def peso_arista(self, v, w):
         return self.ady[v][w]
     
     def existe_vertice(self, v):
