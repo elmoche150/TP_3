@@ -47,12 +47,28 @@ class Grafo:
         return self.ady.keys()
 
     def adyacentes(self, v):
-        return self.ady[v].keys()
+        if v in self.ady:
+            return list(self.ady[v].keys())
+        return []
     
     def cantidad_vertices(self):
         return len(self.ady)
     
-    def obtener_grado(self, v):
+    def grado(self, v):
         if v not in self.ady:
             raise KeyError("El vértice no existe")
         return len(self.ady[v])
+    
+    def obtener_aristas(self):
+        aristas = []
+        visitadas = set()
+        for v in self.ady:
+            for w, peso in self.ady[v].items():
+                if not self.dirigido:
+                    par = tuple(sorted((v, w)))
+                    if par not in visitadas:
+                        visitadas.add(par)
+                        aristas.append((v, w, peso))
+                else:
+                    aristas.append((v, w, peso))
+        return aristas
